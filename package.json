@@ -1,0 +1,11 @@
+{
+  "name": "desafio_ecore",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/LucasKetelhut/dev-scool-e-core.git",
+  "author": "Lucas Ketelhut <lucas-kmk@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

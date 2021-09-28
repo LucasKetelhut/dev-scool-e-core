@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Lucas",
+        "age": 20,
+        "classification": "Adulto"
+    },
+    {
+        "name": "Rodrigo",
+        "age": 9,
+        "classification": "Criança"
+    },
+    {
+        "name": "Giovanna",
+        "age": 67,
+        "classification": "Idoso"
+    },
+    {
+        "name": "Felipe",
+        "age": 16,
+        "classification": "Adolescente"
+    }
+]
