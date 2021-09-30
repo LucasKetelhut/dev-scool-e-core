@@ -1,20 +1,24 @@
 [
     {
+        "id": 0,
         "name": "Lucas",
         "age": 20,
         "classification": "Adulto"
     },
     {
+        "id": 1,
         "name": "Rodrigo",
         "age": 9,
         "classification": "Criança"
     },
     {
+        "id": 2,
         "name": "Giovanna",
         "age": 67,
         "classification": "Idoso"
     },
     {
+        "id": 3,
         "name": "Felipe",
         "age": 16,
         "classification": "Adolescente"

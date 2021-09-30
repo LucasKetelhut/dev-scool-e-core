@@ -21,7 +21,7 @@ export default function List() {
 
     return (
         <Ul>
-            {list.map(person => <li key={person.name}>Nome: {person.name} <br/> Idade: {person.age} <br/> Classificação: {person.classification}</li>)}
+            {list.map(person => <li key={person.id}>Nome: {person.name} <br/> Idade: {person.age} <br/> Classificação: {person.classification}</li>)}
         </Ul>
     );
 }

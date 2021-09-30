@@ -7,6 +7,7 @@ app.use(cors())
 app.use(express.json())
 
 let orderedList = [] 
+var idNumber = 4
 
 // ADICIONANDO MIDDLEWARES PARA INTERCEPTAR AS REQUISIÇÕES E ALTERAR DADOS PARA RETORNAREM NO ENDPOINT
 const orderListByName = (req, res, next) => {
@@ -80,12 +81,18 @@ const orderListByAge = (req, res, next) => {
 const insertClassification = (req, res, next) => {
     const person = req.body
 
-    if (person.age == null) person.classification = ""
-    else if (person.age < 0) return res.sendStatus(400).json()
-    else if (person.age < 12) person.classification = "Criança"
+    if (person.age < 12) person.classification = "Criança"
     else if (person.age < 20) person.classification = "Adolescente"
     else if (person.age < 65) person.classification = "Adulto"
     else person.classification = "Idoso"
+    
+    return next()
+}
+
+const insertId = (req, res, next) => {
+    const person = req.body
+
+    person.id = idNumber++
 
     return next()
 }
@@ -102,12 +109,17 @@ app.get("/list/orderByAge", orderListByAge, (req, res) => {
     return res.json(orderedList)
 })
 
-app.post("/list", insertClassification, (req, res) => {
+app.post("/list", insertId, insertClassification, (req, res) => {
     const person = req.body
 
-    data.push(person)
+    if (person.age < 0 || person.age > 150) {
+        res.sendStatus(400).json()
+        throw new Error('Idade inválida')
+    } else {
+        data.push(person)
 
-    return res.json(person)
+        return res.json(person)
+    }
 })
 
 app.listen(3333, () => {

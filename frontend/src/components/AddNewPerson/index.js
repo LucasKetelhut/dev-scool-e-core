@@ -45,15 +45,22 @@ export default function List() {
             age
         }
 
-        const response  = await api.post('list', state)
-        swal("Pessoa cadastrada!", "Obrigado pelo seu tempo.", "success", {
-            buttons: false,
-            timer: 2500
-        });
-    
-        const person = response.data 
-    
-        setList([...list, person])
+        try {
+            const response  = await api.post('list', state)
+            swal("Pessoa cadastrada!", "Obrigado pelo seu tempo.", "success", {
+                buttons: false,
+                timer: 2500
+            });
+
+            const person = response.data
+            setList([...list, person])
+        } catch(e) {
+            swal("Erro!", "Insira uma idade válida.", "error", {
+                buttons: false,
+                timer: 2500
+            })
+            console.log(e)
+        } 
 
         setName("")
         setAge("")
