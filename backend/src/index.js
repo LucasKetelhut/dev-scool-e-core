@@ -23,7 +23,7 @@ const orderListByName = (req, res, next) => {
         for (let i = 0; i < list.length; i++) {
             if (i == 0) nextPerson = list[i] 
             else {
-                if (nextPerson.name != null && list[i].name.trim() <= nextPerson.name.trim()) {
+                if (nextPerson.name != null && list[i].name.trim().toUpperCase() <= nextPerson.name.trim().toUpperCase()) {
                     nextPerson = list[i]
                 }
             }
@@ -80,7 +80,8 @@ const orderListByAge = (req, res, next) => {
 const insertClassification = (req, res, next) => {
     const person = req.body
 
-    if (person.age < 0) return res.sendStatus(400).json()
+    if (person.age == null) person.classification = ""
+    else if (person.age < 0) return res.sendStatus(400).json()
     else if (person.age < 12) person.classification = "Criança"
     else if (person.age < 20) person.classification = "Adolescente"
     else if (person.age < 65) person.classification = "Adulto"

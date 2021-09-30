@@ -36,13 +36,13 @@ export default function Header() {
                     <Link href="/">Lista</Link>
                 </Li>
                 <Li>
-                    <Link href="orderedbyname">Ordem Alfabética</Link>
+                    <Link href="/orderedbyname">Ordem Alfabética</Link>
                 </Li>
                 <Li>
-                    <Link href="orderedbyage">Ordem Idade</Link>
+                    <Link href="/orderedbyage">Ordem Idade</Link>
                 </Li>
                 <Li>
-                    <Link href="newperson">Adicionar Pessoa</Link>
+                    <Link href="/add">Adicionar Pessoa</Link>
                 </Li>
         </Navbar>
     )

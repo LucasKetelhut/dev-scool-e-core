@@ -1,6 +1,7 @@
 import styled from 'styled-components'
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import api from '../../services/api'
+import swal from 'sweetalert'
 
 const Form = styled.form`
     display: flex;
@@ -33,22 +34,44 @@ const Form = styled.form`
 
 export default function List() {
     const [list, setList] = useState([])
+    const [name, setName] = useState([])
+    const [age, setAge] = useState([])
 
-    async function handleAddPerson() {
-        const response  = await api.post('list', {})
+    async function handleAddPerson(e) {
+        e.preventDefault()
+
+        const state = {
+            name,
+            age
+        }
+
+        const response  = await api.post('list', state)
+        swal("Pessoa cadastrada!", "Obrigado pelo seu tempo.", "success", {
+            buttons: false,
+            timer: 2500
+        });
     
         const person = response.data 
     
         setList([...list, person])
+
+        setName("")
+        setAge("")
     }
 
     return (
-        <Form action="/list" action="POST">
+        <Form action="POST" onSubmit={handleAddPerson}>
             <label htmlFor="name">Nome:</label>
-            <input type="text" name="name" id="name" required/>
+            <input type="text" name="name" id="name" value={name} required
+                onChange={(e) => {
+                    setName(e.target.value)
+                }}/>
             <label htmlFor="age">Idade:</label>
-            <input type="number" name="age" id="age" required/>
-            <button type="submit" onSubmit={handleAddPerson} >
+            <input type="number" name="age" id="age" value={age} required
+                onChange={(e) => {
+                    setAge(e.target.value)
+                }}/>
+            <button type="submit">
                 Adicionar pessoa
             </button>
         </Form>
